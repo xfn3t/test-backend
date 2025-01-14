@@ -1,4 +1,3 @@
-
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 val ktor_version: String by project
@@ -7,7 +6,7 @@ val logback_version: String by project
 
 plugins {
     application
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "1.5.30"
     id("com.github.johnrengelman.shadow") version "5.0.0"
 }
 
@@ -25,7 +24,7 @@ repositories {
 }
 
 dependencies {
-
+    implementation("org.jetbrains.kotlin:kotlin-reflect:1.5.30")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.5.2")
 
     implementation("io.ktor:ktor-server-core:$ktor_version")
@@ -51,7 +50,7 @@ dependencies {
 
     implementation("org.jetbrains.exposed:exposed:0.17.13")
     implementation("com.zaxxer:HikariCP:2.7.8")
-    implementation("org.flywaydb:flyway-core:5.2.4")
+    implementation("org.flywaydb:flyway-core:7.10.0")
 
     implementation("com.squareup.retrofit2:retrofit:2.3.0")
     implementation("com.squareup.retrofit2:converter-jackson:2.3.0")
@@ -82,5 +81,6 @@ tasks.withType<Test> {
 
 tasks.withType<KotlinCompile> {
     kotlinOptions.freeCompilerArgs += "-Xuse-experimental=kotlin.ExperimentalStdlibApi"
+    kotlinOptions.jvmTarget = "1.8"
     kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8.toString()
 }

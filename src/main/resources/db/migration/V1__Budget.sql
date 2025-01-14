@@ -4,5 +4,6 @@ create table budget
     year   int  not null,
     month  int  not null,
     amount int  not null,
-    type   text not null
+    type   text not null,
+    author_id INT
 );
